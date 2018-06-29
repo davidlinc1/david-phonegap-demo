@@ -1,0 +1,120 @@
+extends ../_docs-template
+
+block vars
+  - var activeLink = 'vue';
+  - var title = 'List Button Vue Component | Framework7 Vue Documentation';
+
+block content
+
+  .docs-nav
+    include ../_docs-vue-menu
+  .docs-content
+    +improveDocsLink
+    h1 List Button Vue Component
+    .docs-index
+    p List Button Vue component represents Framework7's <a href="../docs/list-view.html#list-button">List Button</a> element. They are intended to be used inside of the <a href="list-view.html">List Vue Component</a>.
+
+    h2 List Button Components
+    p There are following components included:
+    ul
+      li <code><b>f7-list-button</b></code>
+
+    h2 List Button Properties
+    table.params-table
+      thead
+        tr
+          th Prop
+          th Type
+          th Default
+          th Description
+      tbody
+        tr
+          td title
+          td string
+          td
+          td Button inner text
+        tr
+          td text
+          td string
+          td
+          td Button inner text, same as <code>title</code>
+        tr
+          td tab-link
+          td string/boolean
+          td
+          td Enables tab link and specify CSS selector of the target tab (if specified as a string)
+        tr
+          td tab-link
+          td string/boolean
+          td
+          td Makes this tab link active
+        tr
+          td no-fast-click
+          td boolean
+          td
+          td Disables fast click
+        tr
+          td target
+          td string
+          td
+          td Link target attribute
+        tr
+          th(colspan="4") &lt;f7-list-button&gt; navigation/router related properties
+        +vueLinkRouterProps
+        tr
+          th(colspan="4") &lt;f7-list-button&gt; action related properties
+        +vueLinkActionsProps
+
+    h2 List Button Events
+    table.events-table
+      thead
+        tr
+          th Event
+          th Description
+      tbody
+        tr
+          th(colspan="2") &lt;f7-list-button&gt; events
+        tr
+          td click
+          td Event will be triggered after click on a button
+
+    h2 Examples
+    h4 Minimal Layout
+    pre
+      code.html
+        :code
+          <f7-list>
+            <f7-list-button>Button 1</f7-list-button>
+            <f7-list-button>Button 2</f7-list-button>
+          </f7-list>
+
+          <!-- Renders to: -->
+
+          <div class="list">
+            <ul>
+              <li>
+                <a href="#" class="item-link list-button">Button 1</a>
+              </li>
+              <li>
+                <a href="#" class="item-link list-button">Button 2</a>
+              </li>
+            </ul>
+          </div>
+
+    h4 Color Buttons
+    pre
+      code.html
+        :code
+          <f7-list>
+            <f7-list-button color="red">Red Button</f7-list-button>
+            <f7-list-button color="green">Green Button</f7-list-button>
+          </f7-list>
+
+    h4 Control Buttons in Inset List
+    pre
+      code.html
+        :code
+          <f7-list inset>
+            <f7-list-button panel-open="left">Open Panel</f7-list-button>
+            <f7-list-button popup-open="#my-popup">Open Popup</f7-list-button>
+          </f7-list>

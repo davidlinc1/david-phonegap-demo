@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>Aeries Mobile Portal</title>
+  <link rel="stylesheet" href="css/framework7.ios.min.css">
+  <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+  <link rel="stylesheet" href="css/app.css">
+
+  <style>
+
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+
+  body {
+    background-color: #5582ff;
+  }
+  .avatar-header > h1 {
+    font-family: "Roboto";
+    font-weight: 500;
+  }
+
+.navbar, .toolbar {
+    height: 75px;
+  }
+
+  .navbar:after, .navbar, .subnavbar, .toolbar {
+    background-color: rgba(85, 123, 250, 0.95);
+}
+.navigation-item {
+    display: inline-block;
+    margin: 7px;
+    border: 1px solid #e2e2e2;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.0784313725490196);
+}
+
+.adjusted {
+    background-position: 0px 10px;
+}
+
+.main-navigation-box {
+    max-width: 58%;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 5px;
+    min-width: 300px;
+    margin-top: 0px;
+    box-shadow: 0px 10px 35px 0px rgba(0, 0, 0, 0.25);
+}
+
+.item-container {
+    max-width: 300px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.navigation-item > .image {
+background-size: 100%;
+    height: 80px !important;
+    width: 80px !important;
+    background-repeat: no-repeat;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.page-content {
+      background: #5582ff;
+    background: -moz-linear-gradient(top, #5582ff 0%, #584bdd 100%);
+    background: -webkit-linear-gradient(top, #5582ff 0%,#584bdd 100%);
+    background: linear-gradient(to bottom, #5582ff 0%,#584bdd 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5582ff', endColorstr='#584bdd',GradientType=0 );
+}
+
+.title {
+  font-family: "Roboto";
+  font-weight: 300;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+.buttonContainer {
+    background: white;
+    display: inline-block;
+    width: 170px;
+    padding: 10px;
+    margin-left: 16px;
+    margin-right: 0px;
+    text-align: center;
+    border-radius: 6px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.10);
+}
+
+
+
+i.icon.icon-back {
+    width: 12px;
+    height: 20px;
+  background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%…-8%2C8l8%2C8l-2%2C2L0%2C10L10%2C0z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E);
+}
+
+
+</style>
+
+</head>
+<body>
+  <div id="app" v-cloak>
+    <!-- Statusbar -->
+    <!-- NOTE: You may need to comment out the next line depending on what device you're running on and see the app title cut off -->
+    <f7-statusbar></f7-statusbar>
+
+    <!-- Right Panel -->
+    <f7-panel right cover layout="dark">
+      <f7-view id="right-panel-view" navbar-through :dynamic-navbar="true">
+        <f7-navbar title="Right Panel" sliding></f7-navbar>
+        <f7-pages>
+          <f7-page>
+            <f7-block>
+              <p>Right panel content goes here</p>
+            </f7-block>
+            <f7-block-title>Load page in panel</f7-block-title>
+            <f7-block>
+
+              <table>
+<thead>
+<tr>
+<th>Markdown Tables</th>
+<th>Are</th>
+<th>Cool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>bold</strong></td>
+<td><em>italic</em></td>
+<td><del>strikethough</del></td>
+</tr>
+<tr>
+<td>links <a href="https://wekan.gihub.io">wekan.gihub.io</a></td>
+<td>html img tag <img src="https://i.amz.mshcdn.com/aIyqRWWL8zJzJ81ZLoN1ftzwQpI=/fit-in/1200x9600/http%3A%2F%2Fmashable.com%2Fwp-content%2Fuploads%2F2012%2F10%2FCat-Computer-Mouse.jpg" width="100"></td>
+<td><code>preformatted text</code></td>
+</tr>
+</tbody>
+</table>
+
+            </f7-block>
+          </f7-page>
+        </f7-pages>
+      </f7-view>
+    </f7-panel>
+
+    <!-- Main Views -->
+    <f7-views>
+      <f7-view id="main-view" navbar-through :dynamic-navbar="true" main>
+        <!-- Navbar -->
+        <f7-navbar>
+          <f7-nav-right>
+            <div class="student-avatars" style="
+    padding-right: 18px;
+    border-right: 1px solid lightgrey;
+    padding-top: 5px;
+">
+        
+<div class="avatar" style="
+    display: inline-block;
+    padding-left: 18px;
+">
+            <div class="image" style="
+    width: 25px;
+    height: 25px;
+    background: #3F51B5;
+    border-radius: 25px;
+    background-image: url('./img/student-picture.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: relative;
+    bottom: 6px;
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
+"></div>
+</div><div class="avatar" style="
+    display: inline-block;
+    padding-left: 18px;
+">
+            <div class="image" style="
+    width: 25px;
+    height: 25px;
+    background: #3F51B5;
+    border-radius: 25px;
+    background-image: url('./img/student-picture2.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    opacity: .50;
+"></div>
+</div>
+    </div>
+            <a href="#" data-panel="right" class="open-panel icon-only link"><img src="./img/user.png" style="
+    max-width: 24px;
+    padding-left: 5px;
+"></a>
+          </f7-nav-right>
+        </f7-navbar>
+        <!-- Pages -->
+        <f7-pages>
+
+          <f7-page>
+
+            <div class="avatar-header" style="
+    text-align: center;
+"><div class="avatar-large" style="
+    background: url('./img/student-picture.jpg') 0% 0% / 100% no-repeat;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    margin-right: 10px;
+    border-radius: 100%;
+"></div><h1 style="
+    font-size: 40px;
+    margin-bottom: 0px;
+    display: inline-block;
+    color: white;
+">Allan</h1></div>
+            <div class="main-navigation-box">
+<div class="item-container" style="
+    max-width: 300px;
+    margin: 0 auto;
+    text-align: center;
+">
+<a href="about">
+<div class="navigation-item">
+   <div class="image" style="background-image: url(&quot;./img/class-summary.png&quot;); background-size: 100%; height: 68px; width: 80px; background-repeat: no-repeat;"></div>
+   <div class="title">Class summary</div>
+</div>
+</a>
+<div class="navigation-item">
+   <div class="image" style="background-image: url(&quot;./img/attendance.png&quot;); background-size: 100%; background-position: 0px -10px; height: 68px; width: 80px; background-repeat: no-repeat;"></div>
+   <div class="title">Attendance</div>
+</div>
+<div class="navigation-item">
+   <div class="image" style="background-image: url(&quot;./img/contacts.png&quot;); background-size: 100%; height: 68px; width: 80px; background-repeat: no-repeat;"></div>
+   <div class="title">Contacts</div>
+</div>
+<div class="navigation-item">
+   <div class="image" style="background-image: url(&quot;./img/demographics.png&quot;); background-size: 100%; height: 68px; width: 80px; background-repeat: no-repeat;"></div>
+   <div class="title">Demographics</div>
+</div>
+<div class="navigation-item">
+   <div class="image adjusted" style="background-image: url(&quot;./img/communications.png&quot;); background-size: 100%; height: 68px; width: 80px; background-repeat: no-repeat;"></div>
+   <div class="title">Communications</div>
+</div>
+<div class="navigation-item">
+   <div class="image adjusted" style="background-image: url(&quot;./img/qr.png&quot;); background-size: 100%; height: 68px; width: 80px; background-repeat: no-repeat;"></div>
+   <div class="title">Class check-in</div>
+</div>
+</div></div>
+<img src="./img/school.png" style="
+    position: absolute;
+    top: 80%;
+    max-width: 100%;
+    padding-top: 200px;
+">
+
+          </f7-page>
+
+          <!-- <f7-page>
+            <f7-block-title>Welcome to Mobile Portal</f7-block-title>
+            <f7-block inner>
+              <p>Duis sed erat ac eros ultrices pharetra id ut tellus. Praesent rhoncus enim ornare ipsum aliquet ultricies. Pellentesque sodales erat quis elementum sagittis.</p>
+            </f7-block>
+            <f7-block-title>Navigation</f7-block-title>
+            <f7-list>
+              <f7-list-item link="/about/" title="About"></f7-list-item>
+              <f7-list-item link="/form/" title="Form"></f7-list-item>
+              <f7-list-item link="/dynamic-route/blog/45/post/125/?foo=bar#about" title="Dynamic Route"></f7-list-item>
+            </f7-list>
+            <f7-block-title>Side Panels</f7-block-title>
+            <f7-block>
+              <f7-grid>
+                <f7-col width="50">
+                  <f7-button open-panel="left">Left Panel</f7-button>
+                </f7-col>
+                <f7-col width="50">
+                  <f7-button open-panel="right">Right Panel</f7-button>
+                </f7-col>
+              </f7-grid>
+            </f7-block>
+            <f7-block-title>Modals</f7-block-title>
+            <f7-block>
+              <f7-grid>
+                <f7-col width="50">
+                  <f7-button open-popup="#popup">Popup</f7-button>
+                </f7-col>
+                <f7-col width="50">
+                  <f7-button open-login-screen="#login-screen">Login Screen</f7-button>
+                </f7-col>
+              </f7-grid>
+            </f7-block>
+          </f7-page> -->
+        </f7-pages>
+      </f7-view>
+    </f7-views>
+
+    <!-- Popup -->
+    <f7-popup id="popup">
+      <f7-view navbar-fixed>
+        <f7-pages>
+          <f7-page>
+            <f7-navbar title="Popup">
+              <f7-nav-right>
+                <f7-link close-popup>Close</f7-link>
+              </f7-nav-right>
+            </f7-navbar>
+            <f7-block>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, architecto. Cupiditate laudantium rem nesciunt numquam, ipsam. Voluptates omnis, a inventore atque ratione aliquam. Omnis iusto nemo quos ullam obcaecati, quod.</f7-block>
+          </f7-page>
+        </f7-pages>
+      </f7-view>
+    </f7-popup>
+
+    <!-- Login Screen -->
+    <f7-login-screen id="login-screen">
+      <f7-view>
+        <f7-pages>
+          <f7-page login-screen>
+            <f7-login-screen-title>Login</f7-login-screen-title>
+            <f7-list form>
+              <f7-list-item>
+                <f7-label>Username</f7-label>
+                <f7-input name="username" placeholder="Username" type="text"></f7-input>
+              </f7-list-item>
+              <f7-list-item>
+                <f7-label>Password</f7-label>
+                <f7-input name="password" type="password" placeholder="Password"></f7-input>
+              </f7-list-item>
+            </f7-list>
+            <f7-list>
+              <f7-list-button title="Sign In" close-login-screen></f7-list-button>
+              <f7-list-label>
+                <p>Click Sign In to close Login Screen</p>
+              </f7-list-label>
+            </f7-list>
+          </f7-page>
+        </f7-pages>
+      </f7-view>
+    </f7-login-screen>
+  </div>
+
+  <!-- About Page Template -->
+  <template id="page-about">
+    <f7-page>
+      <f7-navbar>
+        <div class="left sliding" style="transform: translate3d(0px, 0px, 0px);"><a href="#" class="back link color-white"><i class="icon icon-back color-white"></i><span class="">Back</span></a> </div>
+          <f7-nav-right>
+            <div class="student-avatars" style="
+    padding-right: 18px;
+    border-right: 1px solid lightgrey;
+    padding-top: 5px;
+">
+        
+<div class="avatar" style="
+    display: inline-block;
+    padding-left: 18px;
+">
+            <div class="image" style="
+    width: 25px;
+    height: 25px;
+    background: #3F51B5;
+    border-radius: 25px;
+    background-image: url('./img/student-picture.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: relative;
+    bottom: 6px;
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
+"></div>
+</div><div class="avatar" style="
+    display: inline-block;
+    padding-left: 18px;
+">
+            <div class="image" style="
+    width: 25px;
+    height: 25px;
+    background: #3F51B5;
+    border-radius: 25px;
+    background-image: url('./img/student-picture2.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    opacity: .50;
+"></div>
+</div>
+    </div>
+            <a href="#" data-panel="right" class="open-panel icon-only link"><img src="./img/user.png" style="
+    max-width: 24px;
+    padding-left: 5px;
+"></a>
+          </f7-nav-right>
+        </f7-navbar>
+      <div class="wrapper" style="margin-top:30px;
+    background: #EFF2FD;
+"><div class="headerContainer" style="background: white;border-radius: 10px;padding: 11px;position: relative;    top: 20px;
+    margin-bottom: 34px;margin-left: 12px;margin-right: 12px;box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.10);"><img src="./img/class-summary.png" style="max-width: 70px;"><div class="sectionTitle" style="display: inline-block; font-size: 30px; position: relative; bottom: 13px; padding-left: 10px; color: rgb(0, 0, 0);">Class summary</div>
+</div>
+
+<div style="
+    webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+">
+<div class="buttons" style="
+    width: 100em;
+    overflow-x: auto;
+    webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    padding-bottom: 10px;
+">
+<div class="reportCards buttonContainer">Report cards</div><div class="whatIf buttonContainer">What-if</div>
+<div class="reportCards buttonContainer">Report cards</div><div class="reportCards buttonContainer">Report cards</div><div class="whatIf buttonContainer">What-if</div><div class="whatIf buttonContainer">What-if</div></div></div>
+
+<div class="content-block" style="margin: 0px;"><div class="gradesContainer" style="background: white;border-radius: 10px 10px 0px 0px;margin-bottom: 0px;margin-left: 0px;margin-right: 0px;box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 5px;"><div class="gradeScoreCell" style="
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background: rgba(54, 164, 50, 0.3);
+    color: darkgreen;
+    font-size: 21px;
+    text-align: center;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px 0px 0px 0px;
+"><div class="letterGrade">A+</div><div class="score" style="
+    font-size: 13px;
+">100%</div></div><div class="sectionTitle" style="display: inline-block;font-size: 18px;position: relative;bottom: 13px;padding-left: 20px;color: rgb(0, 0, 0);">AP Statistics</div></div><div class="gradesContainer" style="background: white;border-radius: 0px;margin-bottom: 0px;margin-left: 0px;margin-right: 0px;box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 5px;"><div class="gradeScoreCell" style="
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background: rgba(54, 164, 50, 0.3);
+    color: darkgreen;
+    font-size: 21px;
+    text-align: center;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 0px 0px 0px 0px;
+"><div class="letterGrade">A+</div><div class="score" style="
+    font-size: 13px;
+">100%</div></div><div class="sectionTitle" style="display: inline-block;font-size: 18px;position: relative;bottom: 13px;padding-left: 20px;color: rgb(0, 0, 0);">AP Statistics</div></div><div class="gradesContainer" style="background: white;border-radius: 0px;margin-bottom: 0px;margin-left: 0px;margin-right: 0px;box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 5px;"><div class="gradeScoreCell" style="
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background: rgba(54, 164, 50, 0.3);
+    color: darkgreen;
+    font-size: 21px;
+    text-align: center;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 0px;
+"><div class="letterGrade">A+</div><div class="score" style="
+    font-size: 13px;
+">100%</div></div><div class="sectionTitle" style="display: inline-block;font-size: 18px;position: relative;bottom: 13px;padding-left: 20px;color: rgb(0, 0, 0);">AP Statistics</div></div><div class="gradesContainer" style="background: white;border-radius: 0px;margin-bottom: 0px;margin-left: 0px;margin-right: 0px;box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 5px;"><div class="gradeScoreCell" style="
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background: rgba(54, 164, 50, 0.3);
+    color: darkgreen;
+    font-size: 21px;
+    text-align: center;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 0px;
+"><div class="letterGrade">A+</div><div class="score" style="
+    font-size: 13px;
+">100%</div></div><div class="sectionTitle" style="display: inline-block;font-size: 18px;position: relative;bottom: 13px;padding-left: 20px;color: rgb(0, 0, 0);">AP Statistics</div></div><div class="gradesContainer" style="background: white;border-radius: 0px 0px 10px 10px;margin-bottom: 0px;margin-left: 0px;margin-right: 0px;box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 5px;"><div class="gradeScoreCell" style="
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background: rgba(54, 164, 50, 0.3);
+    color: darkgreen;
+    font-size: 21px;
+    text-align: center;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 0px 0px 0px 10px;
+"><div class="letterGrade">A+</div><div class="score" style="
+    font-size: 13px;
+">100%</div></div><div class="sectionTitle" style="display: inline-block;font-size: 18px;position: relative;bottom: 13px;padding-left: 20px;color: rgb(0, 0, 0);">AP Statistics</div></div></div>
+    </f7-page>
+  </template>
+
+  <!-- Form Page Template -->
+  <template id="page-form">
+    <f7-page>
+      <f7-navbar title="Form" back-link="Back" sliding></f7-navbar>
+      <f7-block-title>Form</f7-block-title>
+      <f7-list form>
+        <f7-list-item>
+          <f7-label>Name</f7-label>
+          <f7-input type="text" placeholder="Name"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>Password</f7-label>
+          <f7-input type="password" placeholder="Password"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>E-mail</f7-label>
+          <f7-input type="email" placeholder="E-mail"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>URL</f7-label>
+          <f7-input type="url" placeholder="URL"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>Phone</f7-label>
+          <f7-input type="tel" placeholder="Phone"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>Birth date</f7-label>
+          <f7-input type="date" placeholder="Birth date" value="2014-04-30"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>Date time</f7-label>
+          <f7-input type="datetime-local"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>Gender</f7-label>
+          <f7-input type="select">
+            <option value="1">Male</option>
+            <option value="1">Female</option>
+          </f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>Switch</f7-label>
+          <f7-input type="switch"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>Range</f7-label>
+          <f7-input type="range" min="0" max="100" step="1" value="90"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label>Textarea</f7-label>
+          <f7-input type="textarea" placeholder="Textarea"></f7-input>
+        </f7-list-item>
+      </f7-list>
+
+      <f7-block-title>Form With Floating Labels</f7-block-title>
+      <f7-list form>
+        <f7-list-item>
+          <f7-label floating>Name</f7-label>
+          <f7-input type="text" placeholder="Name"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label floating>Password</f7-label>
+          <f7-input type="password" placeholder="Password"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-label floating>E-mail</f7-label>
+          <f7-input type="email" placeholder="E-mail"></f7-input>
+        </f7-list-item>
+      </f7-list>
+
+      <f7-block-title>Form Without Labels</f7-block-title>
+      <f7-list form>
+        <f7-list-item>
+          <f7-input type="text" placeholder="Name"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-input type="password" placeholder="Password"></f7-input>
+        </f7-list-item>
+        <f7-list-item>
+          <f7-input type="email" placeholder="E-mail"></f7-input>
+        </f7-list-item>
+      </f7-list>
+
+      <f7-block-title>Checkboxes</f7-block-title>
+      <f7-list form>
+        <f7-list-item v-for="n in 3" checkbox name="my-checkbox" :value="n" :title="'Checkbox ' + n"></f7-list-item>
+      </f7-list>
+
+      <f7-block-title>Radios</f7-block-title>
+      <f7-list form>
+        <f7-list-item v-for="n in 3" radio name="my-radio" :checked="n === 1" :value="n" :title="'Radio ' + n"></f7-list-item>
+      </f7-list>
+
+      <f7-block-title>Buttons</f7-block-title>
+      <f7-block inner>
+        <p><f7-button>Button</f7-button></p>
+        <p><f7-button round>Button Round</f7-button></p>
+        <p><f7-button fill>Button Fill</f7-button></p>
+        <p>
+          <f7-buttons>
+            <f7-button round active>Button 1</f7-button>
+            <f7-button round>Button 2</f7-button>
+            <f7-button round>Button 3</f7-button>
+          </f7-buttons>
+        </p>
+        <p>
+          <f7-buttons color="orange">
+            <f7-button round big>Button 1</f7-button>
+            <f7-button round big active>Button 2</f7-button>
+            <f7-button round big>Button 3</f7-button>
+          </f7-buttons>
+        </p>
+        <p>
+          <f7-grid>
+            <f7-col><f7-button big fill color="green">Send</f7-button></f7-col>
+            <f7-col><f7-button big fill color="red">Delete</f7-button></f7-col>
+          </f7-grid>
+        </p>
+        <p>
+          <f7-grid>
+            <f7-col><f7-button fill raised color="green">Raised</f7-button></f7-col>
+            <f7-col><f7-button raised color="red">Raised</f7-button></f7-col>
+            <f7-col><f7-button fill raised color="pink">Raised</f7-button></f7-col>
+          </f7-grid>
+        </p>
+      </f7-block>
+    </f7-page>
+  </template>
+
+  <!-- Dynamic Routing Page Template -->
+  <template id="page-dynamic-routing">
+    <f7-page>
+      <f7-navbar title="Dynamic Route" back-link="Back" sliding></f7-navbar>
+      <f7-block inner>
+        <ul>
+          <li><b>Url:</b> {{$route.url}}</li>
+          <li><b>Path:</b> {{$route.path}}</li>
+          <li><b>Hash:</b> {{$route.hash}}</li>
+          <li><b>Params:</b>
+            <ul>
+              <li v-for="(value, key) in $route.params"><b>{{key}}:</b> {{value}}</li>
+            </ul>
+          </li>
+          <li><b>Query:</b>
+            <ul>
+              <li v-for="(value, key) in $route.query"><b>{{key}}:</b> {{value}}</li>
+            </ul>
+          </li>
+          <li><b>Route:</b> {{$route.route}}</li>
+        </ul>
+      </f7-block>
+      <f7-block inner>
+        <f7-link @click="$router.back()">Go back via Router API</f7-link>
+      </f7-block>
+    </f7-page>
+  </template>
+
+  <script src="cordova.js"></script>
+  <script src="js/framework7.min.js"></script>
+  <script src="js/vue.min.js"></script>
+  <script src="js/framework7-vue.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

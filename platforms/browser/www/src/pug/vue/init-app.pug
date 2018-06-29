@@ -1,0 +1,82 @@
+extends ../_docs-template
+
+block vars
+  - var activeLink = 'vue';
+  - var title = 'Initialize App | Framework7 Vue Documentation';
+
+block content
+
+  .docs-nav
+    include ../_docs-vue-menu
+  .docs-content
+    +improveDocsLink
+    h1 Initialize App
+    p After we have our <a href="app-layout.html">app layout</a> now we need to mount Vue components and initialize the app. You can read about all possible Framework7 initialization parameters in appropriate <a href="../docs/app.html#app-parameters">Framework7 App Parameters</a> section.
+    p Let's look at our script:
+    pre
+      code.js
+        :code
+          // First of all, we need to initialize/enable Framework7 Vue plugin:
+          // We need to pass Framework7Vue plugin and Framework7 as an arguments to Vue.use method
+          Vue.use(Framework7Vue, Framework7);
+
+          // Init Vue App
+          new Vue({
+            // App Root Element
+            el: '#app',
+            // Init Framework7. All Framework7 parameters should be passed in "framework7" property, e.g.:
+            framework7: {
+              // Array with app routes
+              routes: [...]
+              // App Name
+              name: 'My App',
+              // App id
+              id: 'com.myapp.test',
+              // Enable swipe panel
+              panel: {
+                swipe: 'left',
+              },
+              // ...
+            },
+            // App root data
+            data: {
+              // ....
+            },
+            // App root methods
+            methods: {
+              // ....
+            }
+          })
+    p If you use Webpack, Rollup or another bundler with ES-next modules support, it may look like:
+    pre
+      code.js
+        :code
+          // Import Vue
+          import Vue from 'vue'
+
+          // Import F7 Bundle
+          import Framework7 from 'framework7/dist/framework7.esm.bundle.js'
+
+          // Import F7-Vue Plugin Bundle (with all F7 components registered)
+          import Framework7Vue from 'framework7-vue/dist/framework7-vue.esm.bundle.js'
+
+          // Import Routes
+          import Routes from './routes.js'
+
+          // Init F7-Vue Plugin
+          Vue.use(Framework7Vue, Framework7)
+
+          // Init App
+          new Vue({
+            el: '#app',
+            framework7: {
+              routes: Routes
+            },
+            // ...
+          });
+    p In the examples above:
+    ul
+      li we pass <a href="../docs/init-app.html">Framework7 parameters</a> to the Vue root component's <code><b>framework7</b></code> property;
+      li element passed in Vue's <code>el</code> parameter will be used as Framework7 root element
+    p We also must specify array with routes (if we have navigation between pages in the app). Check out information about <a href="vue-component-extensions.html">Vue Component Extensions</a> router and routes in the <a href="navigation-router.html">Navigation Router</a> section.
+
